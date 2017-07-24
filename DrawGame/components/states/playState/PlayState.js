@@ -5,7 +5,9 @@ import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import PropTypes from 'prop-types'
 
-import StateController from "../../stateController/StateController";
+
+
+
 
 export default class PlayState extends React.Component {
     constructor(props) {
@@ -30,13 +32,36 @@ export default class PlayState extends React.Component {
     }
 
     render() {
-        return (
-                <Image
-                source={require("./background.jpg")}
-                style={styles.backgroundImage}/>
+        return (<Background>
+
+            </Background>
+
         );
     }
 }
+
+
+class Background extends React.Component {
+
+    constructor(props) {
+        super(props);
+    }
+
+    update() {
+        console.log("hej")
+
+    }
+
+    render() {
+        return ( <Image
+                source={require("./background.jpg")}
+                style={styles.backgroundImage}/>
+
+        );
+    }
+}
+
+
 
 const styles = StyleSheet.create({
     container: {
