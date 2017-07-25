@@ -13,8 +13,9 @@ export default class PlayState extends React.Component {
     constructor(props) {
     super(props);
     this.state = {
+        }
     }
-}
+
     static contextTypes = {
         loop: PropTypes.object,
     };
@@ -47,15 +48,53 @@ class Background extends React.Component {
         super(props);
     }
 
-    update() {
-        console.log("hej")
+    static contextTypes = {
+        loop: PropTypes.object,
+    };
 
+    update() {
+        this.testFunction();
+    }
+
+    testFunction = function () {
+        console.log("jlszgnksjg");
+        if(styles.backgroundImage.marginTop == undefined) {
+            return {
+                alignItems: 'center',
+                justifyContent: 'center',
+                flex: 1,
+                resizeMode: 'stretch', // or 'stretch'
+                height: 10,
+                marginTop: 0,
+                marginTop: 0,
+            }
+        } else {
+            return {
+                alignItems: 'center',
+                justifyContent: 'center',
+                flex: 1,
+                resizeMode: 'stretch', // or 'stretch'
+                height: 10,
+
+                marginTop: styles.marginTop++,
+            }
+
+
+        }
+    };
+    
+    componentDidMount() {
+        this.context.loop.subscribe(this.update)
+    }
+
+    componentWillUnmount() {
+        this.context.loop.unsubscribe(this.update);
     }
 
     render() {
         return ( <Image
                 source={require("./background.jpg")}
-                style={styles.backgroundImage}/>
+                style={this.testFunction()}/>
 
         );
     }
@@ -68,6 +107,12 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flex: 1,
+        resizeMode: 'stretch', // or 'stretch'
+        height: 10,
+        marginTop: 0,
     },
     backgroundImage: {
         alignItems: 'center',
@@ -75,5 +120,6 @@ const styles = StyleSheet.create({
         flex: 1,
         resizeMode: 'stretch', // or 'stretch'
         height: 10,
+
     }
 });
