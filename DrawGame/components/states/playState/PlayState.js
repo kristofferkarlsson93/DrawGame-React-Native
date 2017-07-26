@@ -2,7 +2,7 @@
  * Created by Kristoffer on 2017-07-21.
  */
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, Dimensions } from 'react-native';
 import PropTypes from 'prop-types'
 
 
@@ -18,6 +18,8 @@ export default class PlayState extends React.Component {
 
     static contextTypes = {
         loop: PropTypes.object,
+        gameHeight: Dimensions.get('window').height,
+        gameWidth: Dimensions.get('window').width
     };
 
     update() {
@@ -46,43 +48,24 @@ class Background extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            background1Top: 0,
+            background2Top: 0,
+        }
     }
 
     static contextTypes = {
         loop: PropTypes.object,
     };
+    update = () => {
 
-    update() {
-        this.testFunction();
-    }
-
-    testFunction = function () {
-        console.log("jlszgnksjg");
-        if(styles.backgroundImage.marginTop == undefined) {
-            return {
-                alignItems: 'center',
-                justifyContent: 'center',
-                flex: 1,
-                resizeMode: 'stretch', // or 'stretch'
-                height: 10,
-                marginTop: 0,
-                marginTop: 0,
-            }
-        } else {
-            return {
-                alignItems: 'center',
-                justifyContent: 'center',
-                flex: 1,
-                resizeMode: 'stretch', // or 'stretch'
-                height: 10,
-
-                marginTop: styles.marginTop++,
-            }
+        this.setState(previousState => {
+            return { background1Top: this.state.background1Top + 1 }; //Yes!!!!
+        });
 
 
-        }
     };
-    
+
     componentDidMount() {
         this.context.loop.subscribe(this.update)
     }
@@ -91,10 +74,26 @@ class Background extends React.Component {
         this.context.loop.unsubscribe(this.update);
     }
 
+    testFunction = function () {
+        return {
+            alignItems: 'center',
+            justifyContent: 'center',
+            flex: 1,
+            resizeMode: 'stretch', // or 'stretch'
+            marginTop: 0,
+            top: this.state.background1Top,  //this one!!
+
+        }
+    }
+
     render() {
-        return ( <Image
-                source={require("./background.jpg")}
-                style={this.testFunction()}/>
+        return (
+            <View style={styles.container}>
+                <Image
+                    source={require("./background.jpg")}
+                    style={this.testFunction()}/>
+
+            </View>
 
         );
     }
@@ -104,22 +103,21 @@ class Background extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flex: 1,
-        resizeMode: 'stretch', // or 'stretch'
-        height: 10,
         marginTop: 0,
+        paddingTop: 0,
+        flex: 1,
+        backgroundColor: 'green',
     },
     backgroundImage: {
         alignItems: 'center',
         justifyContent: 'center',
         flex: 1,
         resizeMode: 'stretch', // or 'stretch'
-        height: 10,
+        marginTop: 0,
+        top: 0,  //this one!!
+
 
     }
 });

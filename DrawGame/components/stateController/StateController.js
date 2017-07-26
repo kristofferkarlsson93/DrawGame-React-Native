@@ -12,7 +12,6 @@ export default class stateController extends React.Component {
         if (true) {
             return (
                 <View style={styles.container}>
-                    <Text>{this.context.loop}</Text>
                     <PlayState/>
                 </View>
             );
@@ -31,5 +30,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#000',
         alignItems: 'center',
         justifyContent: 'center',
+        backgroundColor: "blue",
     },
 });
