@@ -1,16 +1,15 @@
 /**
- * Created by Kristoffer on 2017-07-21.
+ * Created by Kristoffer on 2017-07-26.
  */
 import React from 'react';
 import { StyleSheet, Text, View, Image, Dimensions } from 'react-native';
 import PropTypes from 'prop-types'
 
-import ScrollingBackground from './ScrollingBackground';
 
 export default class PlayState extends React.Component {
     constructor(props) {
-    super(props);
-    this.state = {
+        super(props);
+        this.state = {
         }
     }
 
@@ -32,10 +31,7 @@ export default class PlayState extends React.Component {
     }
 
     render() {
-        return (<ScrollingBackground>
-
-            </ScrollingBackground>
-
+        return (<Text/>
         );
     }
 }
