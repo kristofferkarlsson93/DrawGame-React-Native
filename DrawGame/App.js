@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
-import { Loop, Stage } from 'react-game-kit/native';
+import { Loop, Stage, World } from 'react-game-kit/native';
 
 import StateController from "./components/stateController/StateController";
 

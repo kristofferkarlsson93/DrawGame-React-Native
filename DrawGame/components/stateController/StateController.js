@@ -27,9 +27,9 @@ export default class stateController extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#000',
+        backgroundColor: "green",
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: "blue",
+
     },
 });

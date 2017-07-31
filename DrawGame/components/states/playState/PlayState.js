@@ -4,8 +4,11 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, Dimensions } from 'react-native';
 import PropTypes from 'prop-types'
+import { World } from 'react-game-kit/native';
+
 
 import ScrollingBackground from './ScrollingBackground';
+import Player from './Player';
 
 export default class PlayState extends React.Component {
     constructor(props) {
@@ -32,9 +35,12 @@ export default class PlayState extends React.Component {
     }
 
     render() {
-        return (<ScrollingBackground>
+        return (<World>
+                <ScrollingBackground>
+                    <Player/>
 
-            </ScrollingBackground>
+                </ScrollingBackground>
+            </World>
 
         );
     }
@@ -42,6 +48,7 @@ export default class PlayState extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
+
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: 0,

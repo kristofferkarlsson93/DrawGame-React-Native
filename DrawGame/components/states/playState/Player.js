@@ -31,7 +31,8 @@ export default class PlayState extends React.Component {
     }
 
     render() {
-        return (<Text/>
+        return (
+            <Text>Hej</Text>
         );
     }
 }

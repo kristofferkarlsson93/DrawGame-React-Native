@@ -39,9 +39,10 @@ export default class ScrollingBackground extends React.Component {
             });
         }else if (this.state.background2Top > this.state.gameHeight-2) { //tweak
             this.setState(previousState => {
-                return { background2Top: -this.state.gameHeight }; //Yes!!!!
+                return { background2Top: -this.state.gameHeight };
             });
         }
+
     };
 
     componentDidMount() {
@@ -68,10 +69,10 @@ export default class ScrollingBackground extends React.Component {
         return {
             alignItems: 'center',
             justifyContent: 'center',
-            flex: 1,
+            //flex: 1,
             resizeMode: 'stretch', // or 'stretch'
-            marginTop: 0,
-            position: 'absolute',
+            //marginTop: 0,
+            //position: 'absolute',
             top: this.state.background2Top,  //this one!!
 
         }
@@ -118,5 +119,5 @@ const styles = StyleSheet.create({
 });
 
 const CONFIG = {
-    environmentSpeed: 3,
+    environmentSpeed: 10,
 };
