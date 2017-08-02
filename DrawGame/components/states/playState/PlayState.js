@@ -35,11 +35,11 @@ export default class PlayState extends React.Component {
     }
 
     render() {
-        return (<World>
+        return (
+            <World>
                 <ScrollingBackground>
-                    <Player/>
-
                 </ScrollingBackground>
+                <Player />
             </World>
 
         );
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
         marginTop: 0,
         paddingTop: 0,
         flex: 1,
-        backgroundColor: 'green',
+
     },
 });
 

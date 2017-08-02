@@ -24,15 +24,20 @@ export default class ScrollingBackground extends React.Component {
 
     update = () => {
 
+        //If image position(0,0) is above the screen, move it down
         if(this.state.background1Top < this.state.gameHeight) {
             this.setState(previousState => {
                 return { background1Top: this.state.background1Top + CONFIG.environmentSpeed }; //Yes!!!!
             });
+
+        //Else if position(0,0) is below screen, move it up
         }else if (this.state.background1Top > this.state.gameHeight -2){ //tweak
             this.setState(previousState => {
-                return { background1Top: -this.state.gameHeight }; //Yes!!!!
+                return { background1Top: -this.state.gameHeight };
             });
         }
+
+
         if(this.state.background2Top < this.state.gameHeight) {
             this.setState(previousState => {
                 return { background2Top: this.state.background2Top + CONFIG.environmentSpeed }; //Yes!!!!
@@ -69,12 +74,12 @@ export default class ScrollingBackground extends React.Component {
         return {
             alignItems: 'center',
             justifyContent: 'center',
-            //flex: 1,
-            resizeMode: 'stretch', // or 'stretch'
-            //marginTop: 0,
-            //position: 'absolute',
-            top: this.state.background2Top,  //this one!!
 
+            resizeMode: 'stretch',
+            top: this.state.background2Top,
+            //marginTop: 0,
+            //position: 'absolute'
+            //flex: 1,
         }
     };
 
@@ -104,7 +109,9 @@ const styles = StyleSheet.create({
         marginTop: 0,
         paddingTop: 0,
         flex: 1,
-        backgroundColor: 'green',
+        position: 'absolute',
+        width: Dimensions.get('window').width,
+
     },
     backgroundImage: {
         alignItems: 'center',
@@ -119,5 +126,5 @@ const styles = StyleSheet.create({
 });
 
 const CONFIG = {
-    environmentSpeed: 10,
+    environmentSpeed: 4,
 };
