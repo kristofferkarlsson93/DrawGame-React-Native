@@ -2,7 +2,7 @@
  * Created by Kristoffer on 2017-07-26.
  */
 import React from 'react';
-import { StyleSheet, Text, View, Image, Dimensions, } from 'react-native';
+import { StyleSheet, Text, View, Image, Dimensions, Button} from 'react-native';
 import PropTypes from 'prop-types'
 
 
@@ -34,6 +34,7 @@ export default class PlayState extends React.Component {
 
     onResponderGrant(evt) {
         console.log("Responder grant");
+        //console.log(this.props.obstacles[1].posX);
     }
 
     onResponderReject(evt) {
@@ -62,6 +63,10 @@ export default class PlayState extends React.Component {
         console.log("Terminated");
     }
 
+    onPressLearnMore() {
+        console.log("Klick");
+    }
+
     render() {
         return (
             <View
@@ -76,7 +81,6 @@ export default class PlayState extends React.Component {
                 onResponderTerminate={this.onResponderTerminate.bind(this)}
             >
 
-                <Text>BAAAAJSSSS</Text>
             </View>
         );
     }

@@ -126,5 +126,5 @@ const styles = StyleSheet.create({
 });
 
 const CONFIG = {
-    environmentSpeed: 4,
+    environmentSpeed: 10,
 };
