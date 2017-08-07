@@ -51,6 +51,9 @@ export default class PlayState extends React.Component {
             obstacle12Y: -900,
             obstacle12X: this.randomNumber(),
 
+            someX: 0,
+            someY: 0,
+
             allPositions: []
 
 
@@ -65,6 +68,14 @@ export default class PlayState extends React.Component {
     static contextTypes = {
         loop: PropTypes.object,
     };
+
+    shitFunc() {
+        this.refs.o1.measure((fx, fy, width, height, px, py) => {
+            this.setState({
+                someX: px,
+            })
+        });
+    }
 
     update = () => {
         var newList = [];
@@ -83,10 +94,20 @@ export default class PlayState extends React.Component {
             obstacle12Y: this.state.obstacle12Y+ CONFIG.environmentSpeed,
             allPositions: []
         });
+        var korv = "hejbajskorv";
+        prelList = {};
 
-        prelList = {posY: this.state.obstacle1Y, posX: this.state.obstacle1X}
-        newList.push(prelList);
-        prelList = {posY: this.state.obstacle2Y, posX: this.state.obstacle2X}
+        setTimeout(this.shitFunc.bind(this));
+        console.log(this.state.someX);
+
+
+
+
+        /*prelList = {posY: this.refs.o1.measure((fx, fy, width, height, px, py)=> {
+        return py}), posX: this.refs.o1.measure((fx, fy, width, height, px, py)=> {
+            return px}, this)}
+        newList.push(prelList);*/
+        /*prelList = {posY: this.state.obstacle2Y, posX: this.state.obstacle2X}
         newList.push(prelList);
         prelList = {posY: this.state.obstacle3Y, posX: this.state.obstacle3X}
         newList.push(prelList);
@@ -107,11 +128,12 @@ export default class PlayState extends React.Component {
         prelList = {posY: this.state.obstacle11Y, posX: this.state.obstacle11X}
         newList.push(prelList);
         prelList = {posY: this.state.obstacle12Y, posX: this.state.obstacle12X}
-        newList.push(prelList);
+        newList.push(prelList);*/
         this.setState({allPositions: newList});
+        //console.log(newList[0]);
 
 
-        var prelList = {};
+
         if(this.state.obstacle1Y > CONFIG.gameHeight) {
             this.setState( {obstacle1Y: -100, obstacle1X: this.randomNumber()});
         }
@@ -286,18 +308,8 @@ export default class PlayState extends React.Component {
                 <ScrollingBackground>
                 </ScrollingBackground>
                 <View style={styles.obstacleContainter}>
-                    <View style={this.obstacle1Style()}/>
-                    <View style={this.obstacle2Style()}/>
-                    <View style={this.obstacle3Style()}/>
-                    <View style={this.obstacle4Style()}/>
-                    <View style={this.obstacle5Style()}/>
-                    <View style={this.obstacle6Style()}/>
-                    <View style={this.obstacle7Style()}/>
-                    <View style={this.obstacle8Style()}/>
-                    <View style={this.obstacle9Style()}/>
-                    <View style={this.obstacle10Style()}/>
-                    <View style={this.obstacle11Style()}/>
-                    <View style={this.obstacle12Style()}/>
+                    <View ref="o1" style={this.obstacle1Style()}/>
+
                 </View>
                 <Player obstacles={this.state.allPositions}/>
             </World>

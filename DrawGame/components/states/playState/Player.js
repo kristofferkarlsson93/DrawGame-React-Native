@@ -12,6 +12,7 @@ export default class PlayState extends React.Component {
         this.state = {
             positionY: 0,
             positionX: 0,
+            controller: true,
         }
 
     }
@@ -20,7 +21,28 @@ export default class PlayState extends React.Component {
         loop: PropTypes.object,
     };
 
+    inRange = (num1, num2, numTest) => {
+        [min, max] = [num1, num2].sort((a, b) => a > b);
+        if (numTest > min && numTest < max) {
+            return true;
+        }
+        return false;
+    }
+
     update = () => {
+
+
+        var currentPosition = {x: Math.floor(this.state.positionX), y: Math.floor(this.state.positionY)};
+        //console.log(this.state.positionX);
+        this.props.obstacles.map(function(obstacle) {
+            //console.log(currentPosition.x);
+            if (this.inRange(currentPosition.x - 100, currentPosition.x + 100, obstacle.posX) &&
+            this.inRange(currentPosition.y - 100, currentPosition.y + 100, obstacle.posY)) {
+                console.log("failed");
+            }
+            //console.log(this.state.positionX);
+
+        }, this)
 
     }
 
@@ -34,21 +56,29 @@ export default class PlayState extends React.Component {
 
     onResponderGrant(evt) {
         console.log("Responder grant");
-        //console.log(this.props.obstacles[1].posX);
+        console.log("Y: " + evt.nativeEvent.locationX)
+        console.log("Obstacle: " + this.props.obstacles[0].posY);
+        this.setState({
+            positionX: evt.nativeEvent.locationY,
+            positionY: evt.nativeEvent.locationX
+        });
+
+
+
     }
 
     onResponderReject(evt) {
         console.log("Responder reject");
+
     }
 
     onResponderMove(evt) {
-
         this.setState({
-            positionX: evt.nativeEvent.pageX,
-            positionY: evt.nativeEvent.pageY
+            positionX: evt.nativeEvent.locationY,
+            positionY: evt.nativeEvent.locationX
         });
-        console.log(this.state.positionY);
-
+        /*console.log("X: " + evt.nativeEvent.locationX)
+        console.log("Obstacle: " + this.props.obstacles[0].posX);*/
     }
 
     onResponderRelease(evt) {
