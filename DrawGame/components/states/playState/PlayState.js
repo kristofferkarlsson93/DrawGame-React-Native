@@ -51,8 +51,8 @@ export default class PlayState extends React.Component {
             obstacle12Y: -900,
             obstacle12X: this.randomNumber(),
 
-            someX: 0,
-            someY: 0,
+            tempX: 0,
+            tempY: 0,
 
             allPositions: []
 
@@ -71,10 +71,10 @@ export default class PlayState extends React.Component {
 
     shitFunc() {
         this.refs.o1.measure((fx, fy, width, height, px, py) => {
-            this.setState({
-                someX: px,
-            })
+            this.setState({allPositions: this.state.allPositions.concat([{posX: px, posY: py}])});
+            console.log(this.state.allPositions);
         });
+        //console.log(this.state.allPositions);
     }
 
     update = () => {
@@ -98,7 +98,7 @@ export default class PlayState extends React.Component {
         prelList = {};
 
         setTimeout(this.shitFunc.bind(this));
-        console.log(this.state.someX);
+        //console.log(this.state.allPositions[0]);
 
 
 
@@ -129,7 +129,7 @@ export default class PlayState extends React.Component {
         newList.push(prelList);
         prelList = {posY: this.state.obstacle12Y, posX: this.state.obstacle12X}
         newList.push(prelList);*/
-        this.setState({allPositions: newList});
+        //this.setState({allPositions: newList});
         //console.log(newList[0]);
 
 
